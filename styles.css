@@ -1,0 +1,330 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    font-family: 'Arial', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#spaceCanvas {
+    display: block;
+    background: radial-gradient(circle at center, #1a1a2e 0%, #0c0c0c 100%);
+    cursor: crosshair;
+}
+
+#ui {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #FFB6C1;
+    max-width: 350px;
+    max-height: calc(100vh - 40px);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    border: 3px solid #FFB6C1;
+    backdrop-filter: blur(15px);
+}
+
+.logo-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.stem-logo, .lab-logo {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 0px rgba(255, 182, 193, 0.5);
+    transition: all 0.3s ease;
+}
+
+.stem-logo:hover, .lab-logo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 182, 193, 0.8);
+}
+
+.title {
+    font-size: 2.5em;
+    color: #FFB6C1;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px #FFB6C1;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #e0909c;
+    margin-bottom: 30px;
+}
+
+.button {
+    background: linear-gradient(45deg, #FFB6C1, #FFC0CB);
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px 0px 10px 0px;
+}
+
+.button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #FFB6C1;
+}
+
+.input-field {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #FFB6C1;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    margin: 10px 0px 10px 0px;
+    width: 260px;
+}
+
+.input-field::placeholder {
+    color: #FFC0CB;
+}
+
+.planet-list {
+    margin-top: 2px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.planet-item {
+    padding: 8px 0;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 20px;
+}
+
+.planet-visited {
+    color: #4CAF50;
+}
+
+.planet-unvisited {
+    color: white;
+}
+
+/* Estilização da barra de rolagem */
+#ui::-webkit-scrollbar {
+    width: 8px;
+}
+
+#ui::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+#ui::-webkit-scrollbar-thumb {
+    background: rgba(255, 182, 193, 0.6);
+    border-radius: 4px;
+}
+
+#ui::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 182, 193, 0.8);
+}
+
+.planet-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.planet-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.planet-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 215, 0, 0.6);
+    border-radius: 3px;
+}
+
+.planet-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 215, 0, 0.8);
+}
+
+#dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    border: 3px solid #FFB6C1;
+    max-width: 700px;
+    text-align: center;
+    display: none;
+    backdrop-filter: blur(15px);
+}
+
+#dialogMessage {
+    text-align: justify;
+    line-height: 1.6;
+    margin: 20px 0;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.planet:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 30px currentColor;
+}
+
+.planet-label {
+    position: absolute;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.astronaut {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #87ceeb;
+    border: 3px solid white;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+}
+
+.sun {
+    position: absolute;
+    background: radial-gradient(circle, #ffff00, #ff8c00);
+    border-radius: 50%;
+    box-shadow: 0 0 50px #ffff00;
+}
+
+.grid-line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.message {
+    color: #4CAF50;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.error {
+    color: #f44336;
+}
+
+.secondary-button {
+    background: linear-gradient(45deg, #FFB6C1, #FFC0CB);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    font-size: 1em;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 2px;
+}
+
+.secondary-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #FFB6C1;
+}
+
+.secondary-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.info {
+    font-size: 0.9em;
+    color: #FFC0CB;
+    margin: 5px 0;
+}
+
+.planet-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #333;
+}
+
+.planet-item button {
+    margin-left: 10px;
+}
+
+.camera-controls {
+    display: flex;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.menu-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #FFB6C1;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 182, 193, 0.3);
+    transform: scale(1.05);
+}

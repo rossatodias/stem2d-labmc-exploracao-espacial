@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploração Espacial - Jornada pelos Planetas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="spaceCanvas"></canvas>
+        
+        <div id="menu">
+            <div class="logo-container">
+                <img src="stem_logo.png" alt="STEM Logo" class="stem-logo">
+                <img src="lab_logo.png" alt="Lab Logo" class="lab-logo">
+            </div>
+            <div class="title">🌌 EXPLORAÇÃO ESPACIAL</div>
+            <div class="subtitle">Jornada pelos Planetas</div>
+            <button class="button" onclick="startGame()">🚀 Iniciar Jornada</button>
+            <div style="margin-top: 20px; font-size: 0.9em; color: #e0909c;">
+                Use coordenadas para navegar pelo sistema solar!
+            </div>
+        </div>
+
+        <button id="menuToggle" class="menu-toggle" onclick="toggleMenu()" style="display: none;">☰</button>
+        
+        <div id="ui" style="display: none;">
+            <h3>🎮 Controles</h3>
+            <div style="margin: 30px 0px 5px 0px;">🎯 Navegação: <span id="position">(0, 0)</span></div>
+            <input type="text" id="coordinateInput" class="input-field" placeholder="X: -1600 a 1600, Y: -1600 a 1600" onkeypress="handleKeyPress(event)" oninput="formatCoordinatesInput()">
+            <div style="margin: 0px 0 10px 0;">
+                <button class="secondary-button" onclick="navigate()">Navegar</button>
+            </div>
+            <div id="message" class="message"></div>
+            
+
+            <div style="margin: 30px 0px 5px 0px;">🌍 Planetas</div>
+            <div class="planet-list" id="planetList"></div>
+            <div style="margin: 10px 0;">
+                <button class="secondary-button" onclick="togglePlanetCoordinates()" id="coordinatesToggle">
+                Mostrar Coordenadas
+                </button>
+            </div>
+
+            <div style="margin: 30px 0px 10px 0px;">🔍 Zoom: <span id="zoomLevel">100%</span></div>
+            <div style="margin: 10px 0;">
+                <button class="secondary-button" onclick="zoomIn()" id="zoomInBtn">+</button>
+                <button class="secondary-button" onclick="zoomOut()" id="zoomOutBtn">-</button>
+                <button class="secondary-button" onclick="resetZoom()">Reset</button>
+            </div>
+            <div class="info">Use scroll do mouse ou os botões para zoom.</div>
+        </div>
+
+        <div id="dialog">
+            <h3 id="dialogTitle">👽 Mensagem do Alien</h3>
+            <p id="dialogMessage"></p>
+            <button class="button" onclick="closeDialog()">Continuar</button>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="planets.js"></script>
+    <script src="camera.js"></script>
+    <script src="astronaut.js"></script>
+    <script src="rendering.js"></script>
+    <script src="ui.js"></script>
+    <script src="input.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
