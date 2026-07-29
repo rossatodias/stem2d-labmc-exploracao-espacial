@@ -215,16 +215,6 @@ astronautImage.src = 'sua-imagem.png'; // Altere para o nome do seu arquivo
 - **Modo multiplayer** para competição
 - **Sistema de combustível** para maior realismo
 
-## 🤝 Contribuição
-
-Este projeto foi desenvolvido como uma ferramenta educacional. Contribuições são bem-vindas:
-
-1. **Fork** o projeto
-2. **Crie uma branch** para sua feature
-3. **Commit** suas mudanças
-4. **Push** para a branch
-5. **Abra um Pull Request**
-
 ## 📄 Licença
 
 Este projeto é de código aberto e está disponível sob a licença MIT.
